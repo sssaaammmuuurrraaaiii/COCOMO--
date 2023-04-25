@@ -61,12 +61,19 @@ namespace COCOMO_Калькулятор
         public float cocomoIIEarlyDesignEAF = 1f;
         public float cocomoIIEarlyDesignEAFWithoutSCED = 1f;
 
-        public float PRECValue = 0f;
-        public float FLEXValue = 0f;
-        public float RESLValue = 0f;
-        public float TEAMValue = 0f;
-        public float PMATValue = 0f;
-        public float sumOfScaleFactors = 0f;
+        public float cocomoIIEarlyDesignPRECValue = 0f;
+        public float cocomoIIEarlyDesignFLEXValue = 0f;
+        public float cocomoIIEarlyDesignRESLValue = 0f;
+        public float cocomoIIEarlyDesignTEAMValue = 0f;
+        public float cocomoIIEarlyDesignPMATValue = 0f;
+        public float cocomoIIEarlyDesignSumOfScaleFactors = 0f;
+
+        public float cocomoIIPostArchitecturePRECValue = 0f;
+        public float cocomoIIPostArchitectureFLEXValue = 0f;
+        public float cocomoIIPostArchitectureRESLValue = 0f;
+        public float cocomoIIPostArchitectureTEAMValue = 0f;
+        public float cocomoIIPostArchitecturePMATValue = 0f;
+        public float cocomoIIPostArchitectureSumOfScaleFactors = 0f;
 
         public MainWindow()
         {
@@ -841,17 +848,17 @@ namespace COCOMO_Калькулятор
         private void CocomoIIEarlyDesign_ComboBox_LevelForPRECScaleFactor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIEarlyDesign_ComboBox_LevelForPRECScaleFactor.SelectedIndex == 0) {
-                PRECValue = cocomoIIEarlyDesignScaleFactorsValuesTable[0][0];
+                cocomoIIEarlyDesignPRECValue = cocomoIIEarlyDesignScaleFactorsValuesTable[0][0];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPRECScaleFactor.SelectedIndex == 1) {
-                PRECValue = cocomoIIEarlyDesignScaleFactorsValuesTable[0][1];
+                cocomoIIEarlyDesignPRECValue = cocomoIIEarlyDesignScaleFactorsValuesTable[0][1];
             }  else if (CocomoIIEarlyDesign_ComboBox_LevelForPRECScaleFactor.SelectedIndex == 2) {
-                PRECValue = cocomoIIEarlyDesignScaleFactorsValuesTable[0][2];
+                cocomoIIEarlyDesignPRECValue = cocomoIIEarlyDesignScaleFactorsValuesTable[0][2];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPRECScaleFactor.SelectedIndex == 3) {
-                PRECValue = cocomoIIEarlyDesignScaleFactorsValuesTable[0][3];
+                cocomoIIEarlyDesignPRECValue = cocomoIIEarlyDesignScaleFactorsValuesTable[0][3];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPRECScaleFactor.SelectedIndex == 4) {
-                PRECValue = cocomoIIEarlyDesignScaleFactorsValuesTable[0][4];
+                cocomoIIEarlyDesignPRECValue = cocomoIIEarlyDesignScaleFactorsValuesTable[0][4];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPRECScaleFactor.SelectedIndex == 5) {
-                PRECValue = cocomoIIEarlyDesignScaleFactorsValuesTable[0][5];
+                cocomoIIEarlyDesignPRECValue = cocomoIIEarlyDesignScaleFactorsValuesTable[0][5];
             } else {
 
             }
@@ -860,17 +867,17 @@ namespace COCOMO_Калькулятор
         private void CocomoIIEarlyDesign_ComboBox_LevelForFLEXScaleFactor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIEarlyDesign_ComboBox_LevelForFLEXScaleFactor.SelectedIndex == 0) {
-                FLEXValue = cocomoIIEarlyDesignScaleFactorsValuesTable[1][0];
+                cocomoIIEarlyDesignFLEXValue = cocomoIIEarlyDesignScaleFactorsValuesTable[1][0];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForFLEXScaleFactor.SelectedIndex == 1) {
-                FLEXValue = cocomoIIEarlyDesignScaleFactorsValuesTable[1][1];
+                cocomoIIEarlyDesignFLEXValue = cocomoIIEarlyDesignScaleFactorsValuesTable[1][1];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForFLEXScaleFactor.SelectedIndex == 2) {
-                FLEXValue = cocomoIIEarlyDesignScaleFactorsValuesTable[1][2];
+                cocomoIIEarlyDesignFLEXValue = cocomoIIEarlyDesignScaleFactorsValuesTable[1][2];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForFLEXScaleFactor.SelectedIndex == 3) {
-                FLEXValue = cocomoIIEarlyDesignScaleFactorsValuesTable[1][3];
+                cocomoIIEarlyDesignFLEXValue = cocomoIIEarlyDesignScaleFactorsValuesTable[1][3];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForFLEXScaleFactor.SelectedIndex == 4) {
-                FLEXValue = cocomoIIEarlyDesignScaleFactorsValuesTable[1][4];
+                cocomoIIEarlyDesignFLEXValue = cocomoIIEarlyDesignScaleFactorsValuesTable[1][4];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForFLEXScaleFactor.SelectedIndex == 5) {
-                FLEXValue = cocomoIIEarlyDesignScaleFactorsValuesTable[1][5];
+                cocomoIIEarlyDesignFLEXValue = cocomoIIEarlyDesignScaleFactorsValuesTable[1][5];
             } else {
 
             }
@@ -879,17 +886,17 @@ namespace COCOMO_Калькулятор
         private void CocomoIIEarlyDesign_ComboBox_LevelForRESLScaleFactor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIEarlyDesign_ComboBox_LevelForRESLScaleFactor.SelectedIndex == 0) {
-                RESLValue = cocomoIIEarlyDesignScaleFactorsValuesTable[2][0];
+                cocomoIIEarlyDesignRESLValue = cocomoIIEarlyDesignScaleFactorsValuesTable[2][0];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRESLScaleFactor.SelectedIndex == 1) {
-                RESLValue = cocomoIIEarlyDesignScaleFactorsValuesTable[2][1];
+                cocomoIIEarlyDesignRESLValue = cocomoIIEarlyDesignScaleFactorsValuesTable[2][1];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRESLScaleFactor.SelectedIndex == 2) {
-                RESLValue = cocomoIIEarlyDesignScaleFactorsValuesTable[2][2];
+                cocomoIIEarlyDesignRESLValue = cocomoIIEarlyDesignScaleFactorsValuesTable[2][2];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRESLScaleFactor.SelectedIndex == 3) {
-                RESLValue = cocomoIIEarlyDesignScaleFactorsValuesTable[2][3];
+                cocomoIIEarlyDesignRESLValue = cocomoIIEarlyDesignScaleFactorsValuesTable[2][3];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRESLScaleFactor.SelectedIndex == 4) {
-                RESLValue = cocomoIIEarlyDesignScaleFactorsValuesTable[2][4];
+                cocomoIIEarlyDesignRESLValue = cocomoIIEarlyDesignScaleFactorsValuesTable[2][4];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRESLScaleFactor.SelectedIndex == 5) {
-                RESLValue = cocomoIIEarlyDesignScaleFactorsValuesTable[2][5];
+                cocomoIIEarlyDesignRESLValue = cocomoIIEarlyDesignScaleFactorsValuesTable[2][5];
             } else {
 
             }
@@ -898,17 +905,17 @@ namespace COCOMO_Калькулятор
         private void CocomoIIEarlyDesign_ComboBox_LevelForTEAMScaleFactor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIEarlyDesign_ComboBox_LevelForTEAMScaleFactor.SelectedIndex == 0) {
-                TEAMValue = cocomoIIEarlyDesignScaleFactorsValuesTable[3][0];
+                cocomoIIEarlyDesignTEAMValue = cocomoIIEarlyDesignScaleFactorsValuesTable[3][0];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForTEAMScaleFactor.SelectedIndex == 1) {
-                TEAMValue = cocomoIIEarlyDesignScaleFactorsValuesTable[3][1];
+                cocomoIIEarlyDesignTEAMValue = cocomoIIEarlyDesignScaleFactorsValuesTable[3][1];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForTEAMScaleFactor.SelectedIndex == 2) {
-                TEAMValue = cocomoIIEarlyDesignScaleFactorsValuesTable[3][2];
+                cocomoIIEarlyDesignTEAMValue = cocomoIIEarlyDesignScaleFactorsValuesTable[3][2];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForTEAMScaleFactor.SelectedIndex == 3) {
-                TEAMValue = cocomoIIEarlyDesignScaleFactorsValuesTable[3][3];
+                cocomoIIEarlyDesignTEAMValue = cocomoIIEarlyDesignScaleFactorsValuesTable[3][3];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForTEAMScaleFactor.SelectedIndex == 4) {
-                TEAMValue = cocomoIIEarlyDesignScaleFactorsValuesTable[3][4];
+                cocomoIIEarlyDesignTEAMValue = cocomoIIEarlyDesignScaleFactorsValuesTable[3][4];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForTEAMScaleFactor.SelectedIndex == 5) {
-                TEAMValue = cocomoIIEarlyDesignScaleFactorsValuesTable[3][5];
+                cocomoIIEarlyDesignTEAMValue = cocomoIIEarlyDesignScaleFactorsValuesTable[3][5];
             } else {
 
             }
@@ -917,17 +924,17 @@ namespace COCOMO_Калькулятор
         private void CocomoIIEarlyDesign_ComboBox_LevelForPMATScaleFactor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIEarlyDesign_ComboBox_LevelForPMATScaleFactor.SelectedIndex == 0) {
-                PMATValue = cocomoIIEarlyDesignScaleFactorsValuesTable[4][0];
+                cocomoIIEarlyDesignPMATValue = cocomoIIEarlyDesignScaleFactorsValuesTable[4][0];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPMATScaleFactor.SelectedIndex == 1) {
-                PMATValue = cocomoIIEarlyDesignScaleFactorsValuesTable[4][1];
+                cocomoIIEarlyDesignPMATValue = cocomoIIEarlyDesignScaleFactorsValuesTable[4][1];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPMATScaleFactor.SelectedIndex == 2) {
-                PMATValue = cocomoIIEarlyDesignScaleFactorsValuesTable[4][2];
+                cocomoIIEarlyDesignPMATValue = cocomoIIEarlyDesignScaleFactorsValuesTable[4][2];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPMATScaleFactor.SelectedIndex == 3) {
-                PMATValue = cocomoIIEarlyDesignScaleFactorsValuesTable[4][3];
+                cocomoIIEarlyDesignPMATValue = cocomoIIEarlyDesignScaleFactorsValuesTable[4][3];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPMATScaleFactor.SelectedIndex == 4) {
-                PMATValue = cocomoIIEarlyDesignScaleFactorsValuesTable[4][4];
+                cocomoIIEarlyDesignPMATValue = cocomoIIEarlyDesignScaleFactorsValuesTable[4][4];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPMATScaleFactor.SelectedIndex == 5) {
-                PMATValue = cocomoIIEarlyDesignScaleFactorsValuesTable[4][5];
+                cocomoIIEarlyDesignPMATValue = cocomoIIEarlyDesignScaleFactorsValuesTable[4][5];
             } else {
 
             }
@@ -951,8 +958,9 @@ namespace COCOMO_Калькулятор
                     CocomoIIEarlyDesign_Button_GetSumOfScaleFactors.IsEnabled = false;
                 }
             } else {
-                sumOfScaleFactors = PRECValue + FLEXValue + RESLValue + TEAMValue + PMATValue;
-                CocomoIIEarlyDesign_TextBox_SumOfScaleFactorsValue.Text = sumOfScaleFactors.ToString();
+                cocomoIIEarlyDesignSumOfScaleFactors = cocomoIIEarlyDesignPRECValue + cocomoIIEarlyDesignFLEXValue +
+                    cocomoIIEarlyDesignRESLValue + cocomoIIEarlyDesignTEAMValue + cocomoIIEarlyDesignPMATValue;
+                CocomoIIEarlyDesign_TextBox_SumOfScaleFactorsValue.Text = cocomoIIEarlyDesignSumOfScaleFactors.ToString();
             }
         }
 
@@ -1162,8 +1170,8 @@ namespace COCOMO_Калькулятор
                 cocomoIIEarlyDesignEAFWithoutSCED = PERSValue * PREXValue * RCPXValue * RUSEValue *
                     PDIFValue * FCILValue;
 
-                CocomoIIEarlyDesign_TextBox_LaboriousnessValue.Text = CocomoIIEarlyDesignModel.GetEfforts(cocomoIIEarlyDesignEAF, sumOfScaleFactors, amountProgramCode).ToString("F2");
-                CocomoIIEarlyDesign_TextBox_TimeToDevelopeValue.Text = CocomoIIEarlyDesignModel.GetTimeToDevelop(SCEDValue, cocomoIIEarlyDesignEAFWithoutSCED, amountProgramCode, sumOfScaleFactors).ToString("F2");
+                CocomoIIEarlyDesign_TextBox_LaboriousnessValue.Text = CocomoIIEarlyDesignModel.GetEfforts(cocomoIIEarlyDesignEAF, cocomoIIEarlyDesignSumOfScaleFactors, amountProgramCode).ToString("F2");
+                CocomoIIEarlyDesign_TextBox_TimeToDevelopeValue.Text = CocomoIIEarlyDesignModel.GetTimeToDevelop(SCEDValue, cocomoIIEarlyDesignEAFWithoutSCED, amountProgramCode, cocomoIIEarlyDesignSumOfScaleFactors).ToString("F2");
                 CocomoIIEarlyDesign_TextBox_EAFValue.Text = cocomoIIEarlyDesignEAF.ToString("F2");
                 CocomoIIEarlyDesign_TextBox_EAFWithoutSCEDValue.Text = cocomoIIEarlyDesignEAFWithoutSCED.ToString("F2");
             }
@@ -1175,17 +1183,17 @@ namespace COCOMO_Калькулятор
         private void CocomoIIPostArchitecture_ComboBox_LevelForPRECScaleFactor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIPostArchitecture_ComboBox_LevelForPRECScaleFactor.SelectedIndex == 0) {
-                PRECValue = cocomoIIPostArchitectureScaleFactorsValuesTable[0][0];
+                cocomoIIPostArchitecturePRECValue = cocomoIIPostArchitectureScaleFactorsValuesTable[0][0];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForPRECScaleFactor.SelectedIndex == 1) {
-                PRECValue = cocomoIIPostArchitectureScaleFactorsValuesTable[0][1];
+                cocomoIIPostArchitecturePRECValue = cocomoIIPostArchitectureScaleFactorsValuesTable[0][1];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForPRECScaleFactor.SelectedIndex == 2) {
-                PRECValue = cocomoIIPostArchitectureScaleFactorsValuesTable[0][2];
+                cocomoIIPostArchitecturePRECValue = cocomoIIPostArchitectureScaleFactorsValuesTable[0][2];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForPRECScaleFactor.SelectedIndex == 3) {
-                PRECValue = cocomoIIPostArchitectureScaleFactorsValuesTable[0][3];
+                cocomoIIPostArchitecturePRECValue = cocomoIIPostArchitectureScaleFactorsValuesTable[0][3];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForPRECScaleFactor.SelectedIndex == 4) {
-                PRECValue = cocomoIIPostArchitectureScaleFactorsValuesTable[0][4];
+                cocomoIIPostArchitecturePRECValue = cocomoIIPostArchitectureScaleFactorsValuesTable[0][4];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForPRECScaleFactor.SelectedIndex == 5) {
-                PRECValue = cocomoIIPostArchitectureScaleFactorsValuesTable[0][5];
+                cocomoIIPostArchitecturePRECValue = cocomoIIPostArchitectureScaleFactorsValuesTable[0][5];
             } else {
 
             }
@@ -1194,17 +1202,17 @@ namespace COCOMO_Калькулятор
         private void CocomoIIPostArchitecture_ComboBox_LevelForFLEXScaleFactor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIPostArchitecture_ComboBox_LevelForFLEXScaleFactor.SelectedIndex == 0) {
-                FLEXValue = cocomoIIPostArchitectureScaleFactorsValuesTable[1][0];
+                cocomoIIPostArchitectureFLEXValue = cocomoIIPostArchitectureScaleFactorsValuesTable[1][0];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForFLEXScaleFactor.SelectedIndex == 1) {
-                FLEXValue = cocomoIIPostArchitectureScaleFactorsValuesTable[1][1];
+                cocomoIIPostArchitectureFLEXValue = cocomoIIPostArchitectureScaleFactorsValuesTable[1][1];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForFLEXScaleFactor.SelectedIndex == 2) {
-                FLEXValue = cocomoIIPostArchitectureScaleFactorsValuesTable[1][2];
+                cocomoIIPostArchitectureFLEXValue = cocomoIIPostArchitectureScaleFactorsValuesTable[1][2];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForFLEXScaleFactor.SelectedIndex == 3) {
-                FLEXValue = cocomoIIPostArchitectureScaleFactorsValuesTable[1][3];
+                cocomoIIPostArchitectureFLEXValue = cocomoIIPostArchitectureScaleFactorsValuesTable[1][3];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForFLEXScaleFactor.SelectedIndex == 4) {
-                FLEXValue = cocomoIIPostArchitectureScaleFactorsValuesTable[1][4];
+                cocomoIIPostArchitectureFLEXValue = cocomoIIPostArchitectureScaleFactorsValuesTable[1][4];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForFLEXScaleFactor.SelectedIndex == 5) {
-                FLEXValue = cocomoIIPostArchitectureScaleFactorsValuesTable[1][5];
+                cocomoIIPostArchitectureFLEXValue = cocomoIIPostArchitectureScaleFactorsValuesTable[1][5];
             } else {
 
             }
@@ -1213,17 +1221,17 @@ namespace COCOMO_Калькулятор
         private void CocomoIIPostArchitecture_ComboBox_LevelForRESLScaleFactor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIPostArchitecture_ComboBox_LevelForRESLScaleFactor.SelectedIndex == 0) {
-                RESLValue = cocomoIIPostArchitectureScaleFactorsValuesTable[2][0];
+                cocomoIIPostArchitectureRESLValue = cocomoIIPostArchitectureScaleFactorsValuesTable[2][0];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForRESLScaleFactor.SelectedIndex == 1) {
-                RESLValue = cocomoIIPostArchitectureScaleFactorsValuesTable[2][1];
+                cocomoIIPostArchitectureRESLValue = cocomoIIPostArchitectureScaleFactorsValuesTable[2][1];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForRESLScaleFactor.SelectedIndex == 2) {
-                RESLValue = cocomoIIPostArchitectureScaleFactorsValuesTable[2][2];
+                cocomoIIPostArchitectureRESLValue = cocomoIIPostArchitectureScaleFactorsValuesTable[2][2];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForRESLScaleFactor.SelectedIndex == 3) {
-                RESLValue = cocomoIIPostArchitectureScaleFactorsValuesTable[2][3];
+                cocomoIIPostArchitectureRESLValue = cocomoIIPostArchitectureScaleFactorsValuesTable[2][3];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForRESLScaleFactor.SelectedIndex == 4) {
-                RESLValue = cocomoIIPostArchitectureScaleFactorsValuesTable[2][4];
+                cocomoIIPostArchitectureRESLValue = cocomoIIPostArchitectureScaleFactorsValuesTable[2][4];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForRESLScaleFactor.SelectedIndex == 5) {
-                RESLValue = cocomoIIPostArchitectureScaleFactorsValuesTable[2][5];
+                cocomoIIPostArchitectureRESLValue = cocomoIIPostArchitectureScaleFactorsValuesTable[2][5];
             } else {
 
             }
@@ -1232,17 +1240,17 @@ namespace COCOMO_Калькулятор
         private void CocomoIIPostArchitecture_ComboBox_LevelForTEAMScaleFactor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIPostArchitecture_ComboBox_LevelForTEAMScaleFactor.SelectedIndex == 0) {
-                TEAMValue = cocomoIIPostArchitectureScaleFactorsValuesTable[3][0];
+                cocomoIIPostArchitectureTEAMValue = cocomoIIPostArchitectureScaleFactorsValuesTable[3][0];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForTEAMScaleFactor.SelectedIndex == 1) {
-                TEAMValue = cocomoIIPostArchitectureScaleFactorsValuesTable[3][1];
+                cocomoIIPostArchitectureTEAMValue = cocomoIIPostArchitectureScaleFactorsValuesTable[3][1];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForTEAMScaleFactor.SelectedIndex == 2) {
-                TEAMValue = cocomoIIPostArchitectureScaleFactorsValuesTable[3][2];
+                cocomoIIPostArchitectureTEAMValue = cocomoIIPostArchitectureScaleFactorsValuesTable[3][2];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForTEAMScaleFactor.SelectedIndex == 3) {
-                TEAMValue = cocomoIIPostArchitectureScaleFactorsValuesTable[3][3];
+                cocomoIIPostArchitectureTEAMValue = cocomoIIPostArchitectureScaleFactorsValuesTable[3][3];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForTEAMScaleFactor.SelectedIndex == 4) {
-                TEAMValue = cocomoIIPostArchitectureScaleFactorsValuesTable[3][4];
+                cocomoIIPostArchitectureTEAMValue = cocomoIIPostArchitectureScaleFactorsValuesTable[3][4];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForTEAMScaleFactor.SelectedIndex == 5) {
-                TEAMValue = cocomoIIPostArchitectureScaleFactorsValuesTable[3][5];
+                cocomoIIPostArchitectureTEAMValue = cocomoIIPostArchitectureScaleFactorsValuesTable[3][5];
             } else {
 
             }
@@ -1251,17 +1259,17 @@ namespace COCOMO_Калькулятор
         private void CocomoIIPostArchitecture_ComboBox_LevelForPMATScaleFactor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIPostArchitecture_ComboBox_LevelForPMATScaleFactor.SelectedIndex == 0) {
-                PMATValue = cocomoIIPostArchitectureScaleFactorsValuesTable[4][0];
+                cocomoIIPostArchitecturePMATValue = cocomoIIPostArchitectureScaleFactorsValuesTable[4][0];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForPMATScaleFactor.SelectedIndex == 1) {
-                PMATValue = cocomoIIPostArchitectureScaleFactorsValuesTable[4][1];
+                cocomoIIPostArchitecturePMATValue = cocomoIIPostArchitectureScaleFactorsValuesTable[4][1];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForPMATScaleFactor.SelectedIndex == 2) {
-                PMATValue = cocomoIIPostArchitectureScaleFactorsValuesTable[4][2];
+                cocomoIIPostArchitecturePMATValue = cocomoIIPostArchitectureScaleFactorsValuesTable[4][2];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForPMATScaleFactor.SelectedIndex == 3) {
-                PMATValue = cocomoIIPostArchitectureScaleFactorsValuesTable[4][3];
+                cocomoIIPostArchitecturePMATValue = cocomoIIPostArchitectureScaleFactorsValuesTable[4][3];
             } else if (CocomoIIPostArchitecture_ComboBox_LevelForPMATScaleFactor.SelectedIndex == 4) {
-                PMATValue = cocomoIIPostArchitectureScaleFactorsValuesTable[4][4];
+                cocomoIIPostArchitecturePMATValue = cocomoIIPostArchitectureScaleFactorsValuesTable[4][4];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPMATScaleFactor.SelectedIndex == 5) {
-                PMATValue = cocomoIIPostArchitectureScaleFactorsValuesTable[4][5];
+                cocomoIIPostArchitecturePMATValue = cocomoIIPostArchitectureScaleFactorsValuesTable[4][5];
             } else {
 
             }
@@ -1287,8 +1295,9 @@ namespace COCOMO_Калькулятор
             }
             else
             {
-                sumOfScaleFactors = PRECValue + FLEXValue + RESLValue + TEAMValue + PMATValue;
-                CocomoIIPostArchitecture_TextBox_SumOfScaleFactorsValue.Text = sumOfScaleFactors.ToString();
+                cocomoIIPostArchitectureSumOfScaleFactors = cocomoIIPostArchitecturePRECValue + cocomoIIPostArchitectureFLEXValue +
+                    cocomoIIPostArchitectureRESLValue + cocomoIIPostArchitectureTEAMValue + cocomoIIPostArchitecturePMATValue;
+                CocomoIIPostArchitecture_TextBox_SumOfScaleFactorsValue.Text = cocomoIIPostArchitectureSumOfScaleFactors.ToString();
             }
         }
         #endregion
