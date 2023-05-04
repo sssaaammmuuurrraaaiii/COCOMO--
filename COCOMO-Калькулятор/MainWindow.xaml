@@ -2070,7 +2070,8 @@
                                 <StackPanel Orientation="Vertical">
                                     <RadioButton Name="CocomoIIPostArchitecture_RadioButton_PersonnelFactors"
                                                  Margin="20,45,0,0"
-                                                 VerticalAlignment="Center">
+                                                 VerticalAlignment="Center"
+                                                 Checked="CocomoIIPostArchitecture_RadioButton_PersonnelFactors_Checked">
                                         <RadioButton.Content>
                                             <TextBlock VerticalAlignment="Center">
                                                 Факторы персонала
@@ -2079,7 +2080,8 @@
                                     </RadioButton>
                                     <RadioButton Name="CocomoIIPostArchitecture_RadioButton_ProductFactors"
                                                  Margin="20,10,0,0"
-                                                 VerticalAlignment="Center">
+                                                 VerticalAlignment="Center"
+                                                 Checked="CocomoIIPostArchitecture_RadioButton_ProductFactors_Checked">
                                         <RadioButton.Content>
                                             <TextBlock VerticalAlignment="Center">
                                                 Факторы продукта
@@ -2088,7 +2090,8 @@
                                     </RadioButton>
                                     <RadioButton Name="CocomoIIPostArchitecture_RadioButton_PlateauFactors"
                                                  Margin="20,10,0,0"
-                                                 VerticalAlignment="Center">
+                                                 VerticalAlignment="Center"
+                                                 Checked="CocomoIIPostArchitecture_RadioButton_PlateauFactors_Checked">
                                         <RadioButton.Content>
                                             <TextBlock VerticalAlignment="Center">
                                                 Факторы платформы
@@ -2097,7 +2100,8 @@
                                     </RadioButton>
                                     <RadioButton Name="CocomoIIPostArchitecture_RadioButton_ProjectFactors"
                                                  Margin="20,10,0,0"
-                                                 VerticalAlignment="Center">
+                                                 VerticalAlignment="Center"
+                                                 Checked="CocomoIIPostArchitecture_RadioButton_ProjectFactors_Checked">
                                         <RadioButton.Content>
                                             <TextBlock VerticalAlignment="Center">
                                                 Факторы проекта
@@ -2106,56 +2110,671 @@
                                     </RadioButton>
                                 </StackPanel>
 
-                                <Border x:Name="CocomoIIPostArchitecture_Border" 
-                                        Width="470"
-                                        Height="290"
-                                        Margin="10,10,0,0" 
+                                <GroupBox Header="Множители трудоёмкости EMⱼ"
+                                          Margin="30,10,0,0"
+                                          Padding="5,5,5,5">
+                                    <Border x:Name="CocomoIIPostArchitecture_Border" 
+                                        Width="200"
+                                        Height="200"
                                         BorderBrush="Gray" 
                                         BorderThickness="1"
                                         CornerRadius="2">
-                                    <TabControl x:Name="CocomoIIPostArchitecture_TabControl">
-                                        <TabItem Name="TabItem_BlindTab_2"
-                                                 Visibility="Collapsed"/>
-                                        
-                                        <TabItem Name="TabItem_PersonnelFactors"
-                                                 Visibility="Collapsed">
-                                            <TabItem.Content>
-                                                <StackPanel Orientation="Vertical">
-                                                    
-                                                </StackPanel>
-                                            </TabItem.Content>
-                                        </TabItem>
-                                        
-                                        <TabItem Name="TabItem_ProductFactors"
-                                                 Visibility="Collapsed">
-                                            <TabItem.Content>
-                                                <StackPanel Orientation="Vertical">
+                                        <TabControl x:Name="CocomoIIPostArchitecture_TabControl">
+                                            <TabItem Name="TabItem_BlindTab_2"
+                                                     Visibility="Collapsed"/>
 
-                                                </StackPanel>
-                                            </TabItem.Content>
-                                        </TabItem>
-                                        
-                                        <TabItem Name="TabItem_PlateauFactors"
-                                                 Visibility="Collapsed">
-                                            <TabItem.Content>
-                                                <StackPanel Orientation="Vertical">
+                                            <TabItem Name="TabItem_PersonnelFactors"
+                                                     Visibility="Collapsed">
+                                                <TabItem.Content>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Analyst Capability.
+                                                                            <LineBreak/>
+                                                                            Возможности аналитика.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
 
-                                                </StackPanel>
-                                            </TabItem.Content>
-                                        </TabItem>
-                                        
-                                        <TabItem Name="TabItem_ProjectFactors"
-                                                 Visibility="Collapsed">
-                                            <TabItem.Content>
-                                                <StackPanel Orientation="Vertical">
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                ACAP
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForACAPEffortMultiplier"
+                                                                      Width="125"
+                                                                      Margin="25,5,0,0">
+                                                                <ComboBoxItem Content="Очень низкий"/>
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
 
-                                                </StackPanel>
-                                            </TabItem.Content>
-                                        </TabItem>
-                                    </TabControl>
-                                </Border>
-                                    
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Applications Experience.
+                                                                            <LineBreak/>
+                                                                            Опыт разработки<LineBreak/>
+                                                                            приложений.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                AEXP
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForAEXPEffortMultiplier"
+                                                                      Width="125"
+                                                                      Margin="26.8,5,0,0">
+                                                                <ComboBoxItem Content="Очень низкий"/>
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Programmer Capability.
+                                                                            <LineBreak/>
+                                                                            Возможности программиста.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                PCAP
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForPCAPEffortMultiplier"
+                                                                      Width="125.5"
+                                                                      Margin="25.5,5,0,0">
+                                                                <ComboBoxItem Content="Очень низкий"/>
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Personnel Continuity.
+                                                                            <LineBreak/>
+                                                                            Продолжительность работы<LineBreak/>
+                                                                            персонала.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                PCON
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForPCONEffortMultiplier"
+                                                                      Width="125"
+                                                                      Margin="22.5,5,0,0">
+                                                                <ComboBoxItem Content="Очень низкий"/>
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Platform Experience.
+                                                                            <LineBreak/>
+                                                                            Опыт работы с платформой.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                PEXP
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForPEXPEffortMultiplier"
+                                                                      Width="125.5"
+                                                                      Margin="27.5,5,0,0">
+                                                                <ComboBoxItem Content="Очень низкий"/>
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Language and Tool<LineBreak/>
+                                                                            Experience.
+                                                                            <LineBreak/>
+                                                                            Опыт использования<LineBreak/>
+                                                                            языка программирования и<LineBreak/>
+                                                                            инструментальных средств.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                LTEX
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForLTEXEffortMultiplier"
+                                                                      Width="125"
+                                                                      Margin="30,5,0,0">
+                                                                <ComboBoxItem Content="Очень низкий"/>
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </TabItem.Content>
+                                            </TabItem>
+
+                                            <TabItem Name="TabItem_ProductFactors"
+                                                     Visibility="Collapsed">
+                                                <TabItem.Content>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Reguired Software Reliability.
+                                                                            <LineBreak/>
+                                                                            Требуема надёжность программы.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                RELY
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForRELYEffortMultiplier"
+                                                                      Width="125"
+                                                                      Margin="30,5,0,0">
+                                                                <ComboBoxItem Content="Очень низкий"/>
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Database Size.
+                                                                            <LineBreak/>
+                                                                            Размер базы данных.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                DATA
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForDATAEffortMultiplier"
+                                                                      Width="124.5"
+                                                                      Margin="27,5,0,0">
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Software Product Complexity.
+                                                                            <LineBreak/>
+                                                                            Сложность программы.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                CPLX
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForCPLXEffortMultiplier"
+                                                                      Width="125"
+                                                                      Margin="28,5,0,0">
+                                                                <ComboBoxItem Content="Очень низкий"/>
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                                <ComboBoxItem Content="Критический"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Required Reusability.
+                                                                            <LineBreak/>
+                                                                            Требуемая возможность<LineBreak/>
+                                                                            многократного использования.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                RUSE
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForRUSEEffortMultiplier"
+                                                                      Width="124.5"
+                                                                      Margin="27,5,0,0">
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                                <ComboBoxItem Content="Критический"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Documentation Match<LineBreak/>
+                                                                            to Life-Cycle Needs.
+                                                                            <LineBreak/>
+                                                                            Соответствие документации
+                                                                            потребностям жизненного цикла.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                DOCU
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForDOCUEffortMultiplier"
+                                                                      Width="124.5"
+                                                                      Margin="22,5,0,0">
+                                                                <ComboBoxItem Content="Очень низкий"/>
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </TabItem.Content>
+                                            </TabItem>
+
+                                            <TabItem Name="TabItem_PlateauFactors"
+                                                     Visibility="Collapsed">
+                                                <TabItem.Content>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Execution Time<LineBreak/>
+                                                                            Constraint.
+                                                                            <LineBreak/>
+                                                                            Ограничения времени<LineBreak/>
+                                                                            выполнения.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                   VerticalAlignment="Center"
+                                                                   HorizontalAlignment="Center">
+                                                                TIME
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForTIMEEffortMultiplier"
+                                                                      Width="125"
+                                                                      Margin="28,5,0,0">
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                                <ComboBoxItem Content="Критический"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Main Storage Constraint.
+                                                                            <LineBreak/>
+                                                                            Ограничения памяти.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                STOR
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForSTOREffortMultiplier"
+                                                                      Width="125"
+                                                                      Margin="26,5,0,0">
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                                <ComboBoxItem Content="Критический"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Platform Volatility.
+                                                                            <LineBreak/>
+                                                                            Изменяемость платформы.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                PVOL
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForPVOLEffortMultiplier"
+                                                                      Width="125"
+                                                                      Margin="26,5,0,0">
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </TabItem.Content>
+                                            </TabItem>
+
+                                            <TabItem Name="TabItem_ProjectFactors"
+                                                     Visibility="Collapsed">
+                                                <TabItem.Content>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Use of Software<LineBreak/>
+                                                                            Tools.
+                                                                            <LineBreak/>
+                                                                            Использование<LineBreak/>
+                                                                            инструментальных<LineBreak/>
+                                                                            средств разработки.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                TOOL
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForTOOLEffortMultiplier"
+                                                                      Width="125"
+                                                                      Margin="25,5,0,0">
+                                                                <ComboBoxItem Content="Очень низкий"/>
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Multisite Development.
+                                                                            <LineBreak/>
+                                                                            Многоабонентская<LineBreak/>
+                                                                            (удалённая)разработка.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                SITE
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForSITEEffortMultiplier"
+                                                                      Width="125.5"
+                                                                      Margin="32,5,0,0">
+                                                                <ComboBoxItem Content="Очень низкий"/>
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                                <ComboBoxItem Content="Критический"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <StackPanel.ToolTip>
+                                                                <ToolTip HasDropShadow="True">
+                                                                    <ToolTip.Content>
+                                                                        <TextBlock>
+                                                                            Required Development<LineBreak/>
+                                                                            Schedule.
+                                                                            <LineBreak/>
+                                                                            Требуемое выполнение<LineBreak/>
+                                                                            графика работ.
+                                                                        </TextBlock>
+                                                                    </ToolTip.Content>
+                                                                </ToolTip>
+                                                            </StackPanel.ToolTip>
+
+                                                            <TextBlock Margin="5,5,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center">
+                                                                SCED
+                                                            </TextBlock>
+                                                            <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForSCEDEffortMultiplier"
+                                                                      Width="125"
+                                                                      Margin="26,5,0,0">
+                                                                <ComboBoxItem Content="Очень низкий"/>
+                                                                <ComboBoxItem Content="Низкий"/>
+                                                                <ComboBoxItem Content="Нормальный"/>
+                                                                <ComboBoxItem Content="Высокий"/>
+                                                                <ComboBoxItem Content="Очень высокий"/>
+                                                            </ComboBox>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </TabItem.Content>
+                                            </TabItem>
+                                        </TabControl>
+                                    </Border>
+                                </GroupBox>
+
+                                <StackPanel Orientation="Vertical">
+                                    <GroupBox Header="Вводимые параметры"
+                                      Width="240"
+                                      Height="110"
+                                      Margin="30,10,0,0"
+                                      Padding="10"
+                                      VerticalAlignment="Top">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock>
+                                        Объём программного продукта<LineBreak/>(количество строк кода, тыс)
+                                            </TextBlock>
+                                            <TextBox Name="CocomoIIPostArchitecture_TextBox_AmountProgramCodeValue"
+                                             Width="165"
+                                             Height="20.5"
+                                             Margin="0,5,40,0"
+                                             MaxLength="10"
+                                             PreviewTextInput="All_TextBoxes_AmountProgramCodeValue_PreviewTextInput"/>
+                                        </StackPanel>
+                                    </GroupBox>
+
+                                    <Button Name="CocomoIIPostArchitecture_Button_GetQuote"
+                                    Width="80"
+                                    Height="30"
+                                    Margin="0,105,2,0"
+                                    HorizontalAlignment="Right"
+                                    Content="Рассчитать"/>
+                                </StackPanel>
                             </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <GroupBox x:Name="CocomoIIPostArchitecture_GroupBox_Results"
+                                      Header="Результаты"
+                                      Margin="0,20,43,0"
+                                      Padding="5">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal"
+                                                    Margin="0,0,0,5">
+                                            <TextBlock VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center">
+                                                Трудоёмкость, человек/месяц
+                                            </TextBlock>
+                                            <TextBox Name="CocomoIIPostArchitecture_TextBox_LaboriousnessValue"
+                                                     Width="135"
+                                                     Height="20.5"
+                                                     Margin="10,0,0,0"
+                                                     VerticalAlignment="Center"
+                                                     HorizontalAlignment="Center"
+                                                     TextAlignment="Center"
+                                                     FontWeight="Bold"
+                                                     IsReadOnly="True"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center">
+                                                Время разработки, месяцы
+                                            </TextBlock>
+                                            <TextBox Name="CocomoIIPostArchitecture_TextBox_TimeToDevelopeValue"
+                                                     Width="135"
+                                                     Height="20.5"
+                                                     Margin="26.5,0,0,0"
+                                                     VerticalAlignment="Center"
+                                                     HorizontalAlignment="Center"
+                                                     TextAlignment="Center"
+                                                     FontWeight="Bold"
+                                                     IsReadOnly="True"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal"
+                                                    Margin="25,0,0,5">
+                                            <TextBlock VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center">
+                                                EAF
+                                            </TextBlock>
+                                            <TextBox Name="CocomoIIPostArchitecture_TextBox_EAFValue"
+                                                     Width="135"
+                                                     Height="20.5"
+                                                     Margin="63.5,0,0,0"
+                                                     VerticalAlignment="Center"
+                                                     HorizontalAlignment="Center"
+                                                     TextAlignment="Center"
+                                                     FontWeight="Bold"
+                                                     IsReadOnly="True"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal"
+                                                    Margin="25,0,0,0">
+                                            <TextBlock VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center">
+                                                EAF без SCED
+                                            </TextBlock>
+                                            <TextBox Name="CocomoIIPostArchitecture_TextBox_EAFWithoutSCEDValue"
+                                                     Width="135"
+                                                     Height="20.5"
+                                                     Margin="10,0,0,0"
+                                                     TextAlignment="Center"
+                                                     FontWeight="Bold"
+                                                     IsReadOnly="True"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <Button Name="CocomoIIPostArchitecture_Button_ClearValues" 
+                                            Width="80"
+                                            Height="30"
+                                            Margin="210,0,0,0"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            Content="Очистить"/>
+                                </StackPanel>
+                            </GroupBox>
                         </StackPanel>
                     </StackPanel>
                 </TabItem.Content>

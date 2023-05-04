@@ -1300,6 +1300,26 @@ namespace COCOMO_Калькулятор
                 CocomoIIPostArchitecture_TextBox_SumOfScaleFactorsValue.Text = cocomoIIPostArchitectureSumOfScaleFactors.ToString();
             }
         }
+
+        private void CocomoIIPostArchitecture_RadioButton_PersonnelFactors_Checked(object sender, RoutedEventArgs e)
+        {
+            CocomoIIPostArchitecture_TabControl.SelectedIndex = 1;
+        }
+
+        private void CocomoIIPostArchitecture_RadioButton_ProductFactors_Checked(object sender, RoutedEventArgs e)
+        {
+            CocomoIIPostArchitecture_TabControl.SelectedIndex = 2;
+        }
+
+        private void CocomoIIPostArchitecture_RadioButton_PlateauFactors_Checked(object sender, RoutedEventArgs e)
+        {
+            CocomoIIPostArchitecture_TabControl.SelectedIndex = 3;
+        }
+
+        private void CocomoIIPostArchitecture_RadioButton_ProjectFactors_Checked(object sender, RoutedEventArgs e)
+        {
+            CocomoIIPostArchitecture_TabControl.SelectedIndex = 4;
+        }
         #endregion
     }
 }
