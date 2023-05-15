@@ -1208,8 +1208,7 @@ namespace COCOMO_Калькулятор
             if (string.IsNullOrEmpty(CocomoIIEarlyDesign_TextBox_LaboriousnessValue.Text) &&
                 string.IsNullOrEmpty(CocomoIIEarlyDesign_TextBox_TimeToDevelopeValue.Text) &&
                 string.IsNullOrEmpty(CocomoIIEarlyDesign_TextBox_EAFValue.Text) &&
-                string.IsNullOrEmpty(CocomoIIEarlyDesign_TextBox_EAFWithoutSCEDValue.Text))
-            {
+                string.IsNullOrEmpty(CocomoIIEarlyDesign_TextBox_EAFWithoutSCEDValue.Text)) {
                 MessageBox.Show
                     (
                     "Невозможно очистить пустое поле!",
@@ -1218,10 +1217,8 @@ namespace COCOMO_Калькулятор
                     MessageBoxImage.Error
                     );
 
-                CocomoBasic_Button_ClearValues.IsEnabled = false;
-            }
-            else
-            {
+                CocomoIIEarlyDesign_Button_ClearValues.IsEnabled = false;
+            } else {
                 CocomoIIEarlyDesign_TextBox_LaboriousnessValue.Clear(); 
                 CocomoIIEarlyDesign_TextBox_TimeToDevelopeValue.Clear();
                 CocomoIIEarlyDesign_TextBox_EAFValue.Clear();
@@ -1739,11 +1736,32 @@ namespace COCOMO_Калькулятор
                 CocomoIIPostArchitecture_TextBox_EAFWithoutSCEDValue.Text = cocomoIIPostArchitectureEAFWithoutSCEDValue.ToString("F2");
             }
         }
-        #endregion
 
         private void CocomoIIPostArchitecture_Button_ClearValues_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(CocomoIIPostArchitecture_TextBox_LaboriousnessValue.Text) &&
+                string.IsNullOrEmpty(CocomoIIPostArchitecture_TextBox_TimeToDevelopeValue.Text) &&
+                string.IsNullOrEmpty(CocomoIIPostArchitecture_TextBox_EAFValue.Text) &&
+                string.IsNullOrEmpty(CocomoIIPostArchitecture_TextBox_EAFWithoutSCEDValue.Text))
+            {
+                MessageBox.Show
+                    (
+                    "Невозможно очистить пустое поле!",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                    );
 
+                CocomoIIPostArchitecture_Button_ClearValues.IsEnabled = false;
+            }
+            else
+            {
+                CocomoIIPostArchitecture_TextBox_LaboriousnessValue.Clear();
+                CocomoIIPostArchitecture_TextBox_TimeToDevelopeValue.Clear();
+                CocomoIIPostArchitecture_TextBox_EAFValue.Clear();
+                CocomoIIPostArchitecture_TextBox_EAFWithoutSCEDValue.Clear();
+            }
         }
+        #endregion
     }
 }
