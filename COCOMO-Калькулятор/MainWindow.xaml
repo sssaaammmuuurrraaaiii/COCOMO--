@@ -1533,7 +1533,8 @@
                                             Margin="70,0,0,0"
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Center"
-                                            Content="Очистить"/>
+                                            Content="Очистить"
+                                            Click="CocomoIIEarlyDesign_Button_ClearValues_Click"/>
                                 </StackPanel>
                             </GroupBox>
                         </StackPanel>
@@ -2147,7 +2148,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForACAPEffortMultiplier"
                                                                       Width="125"
-                                                                      Margin="25,5,0,0">
+                                                                      Margin="25,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForACAPEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Очень низкий"/>
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
@@ -2177,7 +2179,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForAEXPEffortMultiplier"
                                                                       Width="125"
-                                                                      Margin="26.8,5,0,0">
+                                                                      Margin="26.8,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForAEXPEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Очень низкий"/>
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
@@ -2206,7 +2209,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForPCAPEffortMultiplier"
                                                                       Width="125.5"
-                                                                      Margin="25.5,5,0,0">
+                                                                      Margin="25.5,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForPCAPEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Очень низкий"/>
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
@@ -2236,7 +2240,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForPCONEffortMultiplier"
                                                                       Width="125"
-                                                                      Margin="22.5,5,0,0">
+                                                                      Margin="22.5,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForPCONEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Очень низкий"/>
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
@@ -2265,7 +2270,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForPEXPEffortMultiplier"
                                                                       Width="125.5"
-                                                                      Margin="27.5,5,0,0">
+                                                                      Margin="27.5,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForPEXPEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Очень низкий"/>
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
@@ -2297,7 +2303,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForLTEXEffortMultiplier"
                                                                       Width="125"
-                                                                      Margin="30,5,0,0">
+                                                                      Margin="30,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForLTEXEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Очень низкий"/>
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
@@ -2333,7 +2340,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForRELYEffortMultiplier"
                                                                       Width="125"
-                                                                      Margin="30,5,0,0">
+                                                                      Margin="30,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForRELYEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Очень низкий"/>
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
@@ -2362,7 +2370,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForDATAEffortMultiplier"
                                                                       Width="124.5"
-                                                                      Margin="27,5,0,0">
+                                                                      Margin="27,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForDATAEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
                                                                 <ComboBoxItem Content="Высокий"/>
@@ -2390,7 +2399,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForCPLXEffortMultiplier"
                                                                       Width="125"
-                                                                      Margin="28,5,0,0">
+                                                                      Margin="28,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForCPLXEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Очень низкий"/>
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
@@ -2421,7 +2431,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForRUSEEffortMultiplier"
                                                                       Width="124.5"
-                                                                      Margin="27,5,0,0">
+                                                                      Margin="27,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForRUSEEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
                                                                 <ComboBoxItem Content="Высокий"/>
@@ -2452,7 +2463,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForDOCUEffortMultiplier"
                                                                       Width="124.5"
-                                                                      Margin="22,5,0,0">
+                                                                      Margin="22,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForDOCUEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Очень низкий"/>
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
@@ -2490,7 +2502,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForTIMEEffortMultiplier"
                                                                       Width="125"
-                                                                      Margin="28,5,0,0">
+                                                                      Margin="28,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForTIMEEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Нормальный"/>
                                                                 <ComboBoxItem Content="Высокий"/>
                                                                 <ComboBoxItem Content="Очень высокий"/>
@@ -2518,7 +2531,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForSTOREffortMultiplier"
                                                                       Width="125"
-                                                                      Margin="26,5,0,0">
+                                                                      Margin="26,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForSTOREffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Нормальный"/>
                                                                 <ComboBoxItem Content="Высокий"/>
                                                                 <ComboBoxItem Content="Очень высокий"/>
@@ -2546,7 +2560,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForPVOLEffortMultiplier"
                                                                       Width="125"
-                                                                      Margin="26,5,0,0">
+                                                                      Margin="26,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForPVOLEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
                                                                 <ComboBoxItem Content="Высокий"/>
@@ -2584,7 +2599,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForTOOLEffortMultiplier"
                                                                       Width="125"
-                                                                      Margin="25,5,0,0">
+                                                                      Margin="25,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForTOOLEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Очень низкий"/>
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
@@ -2614,7 +2630,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForSITEEffortMultiplier"
                                                                       Width="125.5"
-                                                                      Margin="32,5,0,0">
+                                                                      Margin="32,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForSITEEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Очень низкий"/>
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
@@ -2646,7 +2663,8 @@
                                                             </TextBlock>
                                                             <ComboBox Name="CocomoIIPostArchitecture_ComboBox_LevelForSCEDEffortMultiplier"
                                                                       Width="125"
-                                                                      Margin="26,5,0,0">
+                                                                      Margin="26,5,0,0"
+                                                                      SelectionChanged="CocomoIIPostArchitecture_ComboBox_LevelForSCEDEffortMultiplier_SelectionChanged">
                                                                 <ComboBoxItem Content="Очень низкий"/>
                                                                 <ComboBoxItem Content="Низкий"/>
                                                                 <ComboBoxItem Content="Нормальный"/>
@@ -2673,20 +2691,21 @@
                                         Объём программного продукта<LineBreak/>(количество строк кода, тыс)
                                             </TextBlock>
                                             <TextBox Name="CocomoIIPostArchitecture_TextBox_AmountProgramCodeValue"
-                                             Width="165"
-                                             Height="20.5"
-                                             Margin="0,5,40,0"
-                                             MaxLength="10"
-                                             PreviewTextInput="All_TextBoxes_AmountProgramCodeValue_PreviewTextInput"/>
+                                                     Width="165"
+                                                     Height="20.5"
+                                                     Margin="0,5,40,0"
+                                                     MaxLength="10"
+                                                     PreviewTextInput="All_TextBoxes_AmountProgramCodeValue_PreviewTextInput"/>
                                         </StackPanel>
                                     </GroupBox>
 
                                     <Button Name="CocomoIIPostArchitecture_Button_GetQuote"
-                                    Width="80"
-                                    Height="30"
-                                    Margin="0,105,2,0"
-                                    HorizontalAlignment="Right"
-                                    Content="Рассчитать"/>
+                                            Width="80"
+                                            Height="30"
+                                            Margin="0,105,2,0"
+                                            HorizontalAlignment="Right"
+                                            Content="Рассчитать"
+                                            Click="CocomoIIPostArchitecture_Button_GetQuote_Click"/>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
@@ -2772,7 +2791,8 @@
                                             Margin="210,0,0,0"
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Center"
-                                            Content="Очистить"/>
+                                            Content="Очистить"
+                                            Click="CocomoIIPostArchitecture_Button_ClearValues_Click"/>
                                 </StackPanel>
                             </GroupBox>
                         </StackPanel>

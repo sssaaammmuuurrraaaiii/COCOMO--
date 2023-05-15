@@ -2,11 +2,13 @@
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Threading;
 using System.Diagnostics;
 using System.Reflection;
 using System.Linq;
 using Microsoft.Win32;
+using Microsoft.Office.Interop.Excel;
 
 using static COCOMO_Калькулятор.ProjectTypes;
 using static COCOMO_Калькулятор.CocomoIntermediateModel;
@@ -16,7 +18,7 @@ using static COCOMO_Калькулятор.CocomoIIPostArchitectureModel;
 using Excel = Microsoft.Office.Interop.Excel;
 using Application = System.Windows.Application;
 using Window = System.Windows.Window;
-using Microsoft.Office.Interop.Excel;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace COCOMO_Калькулятор
 {
@@ -49,17 +51,17 @@ namespace COCOMO_Калькулятор
         public float useOfSoftwareToolsValue = 1f;
         public float applicationOfSoftwareEngineeringMethodsValue = 1f;
         public float reguiredDevelopmentScheduleValue = 1f;
-        public float cocomoIntermediateEAF = 1f;
+        public float cocomoIntermediateEAFValue = 1f;
 
-        public float PERSValue = 1f;
-        public float PREXValue = 1f;
-        public float RCPXValue = 1f;
-        public float RUSEValue = 1f;
-        public float PDIFValue = 1f;
-        public float FCILValue = 1f;
-        public float SCEDValue = 1f;
-        public float cocomoIIEarlyDesignEAF = 1f;
-        public float cocomoIIEarlyDesignEAFWithoutSCED = 1f;
+        public float cocomoIIEarlyDesignPERSValue = 1f;
+        public float cocomoIIEarlyDesignPREXValue = 1f;
+        public float cocomoIIEarlyDesignRCPXValue = 1f;
+        public float cocomoIIEarlyDesignRUSEValue = 1f;
+        public float cocomoIIEarlyDesignPDIFValue = 1f;
+        public float cocomoIIEarlyDesignFCILValue = 1f;
+        public float cocomoIIEarlyDesignSCEDValue = 1f;
+        public float cocomoIIEarlyDesignEAFValue = 1f;
+        public float cocomoIIEarlyDesignEAFWithoutSCEDValue = 1f;
 
         public float cocomoIIEarlyDesignPRECValue = 0f;
         public float cocomoIIEarlyDesignFLEXValue = 0f;
@@ -74,6 +76,26 @@ namespace COCOMO_Калькулятор
         public float cocomoIIPostArchitectureTEAMValue = 0f;
         public float cocomoIIPostArchitecturePMATValue = 0f;
         public float cocomoIIPostArchitectureSumOfScaleFactors = 0f;
+
+        public float cocomoIIPostArchitectureACAPValue = 1f;
+        public float cocomoIIPostArchitectureAEXPValue = 1f;
+        public float cocomoIIPostArchitecturePCAPValue = 1f;
+        public float cocomoIIPostArchitecturePCONValue = 1f;
+        public float cocomoIIPostArchitecturePEXPValue = 1f;
+        public float cocomoIIPostArchitectureLTEXValue = 1f;
+        public float cocomoIIPostArchitectureRELYValue = 1f;
+        public float cocomoIIPostArchitectureDATAValue = 1f;
+        public float cocomoIIPostArchitectureCPLXValue = 1f;
+        public float cocomoIIPostArchitectureRUSEValue = 1f;
+        public float cocomoIIPostArchitectureDOCUValue = 1f;
+        public float cocomoIIPostArchitectureTIMEValue = 1f;
+        public float cocomoIIPostArchitectureSTORValue = 1f;
+        public float cocomoIIPostArchitecturePVOLValue = 1f;
+        public float cocomoIIPostArchitectureTOOLValue = 1f;
+        public float cocomoIIPostArchitectureSITEValue = 1f;
+        public float cocomoIIPostArchitectureSCEDValue = 1f;
+        public float cocomoIIPostArchitectureEAFValue = 1f;
+        public float cocomoIIPostArchitectureEAFWithoutSCEDValue = 1f;
 
         public MainWindow()
         {
@@ -234,10 +256,19 @@ namespace COCOMO_Калькулятор
             }
         }
 
-        private void All_TextBoxes_AmountProgramCodeValue_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        private void All_TextBoxes_AmountProgramCodeValue_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9,-]+");
-            e.Handled = regex.IsMatch(e.Text);
+            TextBox textBox = sender as TextBox;
+            Regex onlyDigitsNCommaRegex = new Regex("[^0-9,-]+");
+            Regex onlyDigitsRegex = new Regex("[^0-9-]+");
+
+            if (textBox.Text.Contains(",")) {
+                e.Handled = onlyDigitsRegex.IsMatch(e.Text);
+            } else if (textBox.Text.Equals(",")) {
+                //
+            } else {
+                e.Handled = onlyDigitsNCommaRegex.IsMatch(e.Text);
+            }
         }
 
         private void MenuItem_StartOver_Click(object sender, RoutedEventArgs e)
@@ -801,16 +832,16 @@ namespace COCOMO_Калькулятор
             } else {
                 ProjectTypes.ProjectType projectType = (ProjectTypes.ProjectType)Enum.Parse(typeof(ProjectTypes.ProjectType), CocomoIntermediate_ComboBox_ProjectTypes.Text);
                 float amountProgramCode = float.Parse(CocomoIntermediate_TextBox_AmountProgramCodeValue.Text.Trim());
-                cocomoIntermediateEAF = reguiredSoftwareReliabilityValue * sizeOfApplicationDatabaseValue *
+                cocomoIntermediateEAFValue = reguiredSoftwareReliabilityValue * sizeOfApplicationDatabaseValue *
                     complexityOfProductValue * runTimePerformanceConstraintsValue * memoryConstraintsValue *
                     volatalityOfVirtualMachineEnvironmentValue * reguiredTurnaboutTimeValue * analystCapabilityValue *
                     softwareEngineerCapabilityValue * applicationsExperienceValue * virtualMachineExperienceValue * 
                     programmingLanguageExperienceValue * useOfSoftwareToolsValue * applicationOfSoftwareEngineeringMethodsValue * 
                     reguiredDevelopmentScheduleValue;
 
-                CocomoIntermediate_TextBox_LaboriousnessValue.Text = CocomoIntermediateModel.GetEfforts(cocomoIntermediateEAF, amountProgramCode, projectType).ToString("F1");
-                CocomoIntermediate_TextBox_TimeToDevelopeValue.Text = CocomoIntermediateModel.GetTimeToDevelop(cocomoIntermediateEAF, amountProgramCode, projectType).ToString("F1");
-                CocomoIntermediate_TextBox_EAFValue.Text = cocomoIntermediateEAF.ToString("F2");
+                CocomoIntermediate_TextBox_LaboriousnessValue.Text = CocomoIntermediateModel.GetEfforts(cocomoIntermediateEAFValue, amountProgramCode, projectType).ToString("F1");
+                CocomoIntermediate_TextBox_TimeToDevelopeValue.Text = CocomoIntermediateModel.GetTimeToDevelop(cocomoIntermediateEAFValue, amountProgramCode, projectType).ToString("F1");
+                CocomoIntermediate_TextBox_EAFValue.Text = cocomoIntermediateEAFValue.ToString("F2");
 
                 MessageBox.Show(
                     "УСПЕШНО!",
@@ -967,19 +998,19 @@ namespace COCOMO_Калькулятор
         private void CocomoIIEarlyDesign_ComboBox_LevelForPERSEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIEarlyDesign_ComboBox_LevelForPERSEffortMultiplier.SelectedIndex == 0) {
-                PERSValue = effortMultipliersValuesTable[0][0];
+                cocomoIIEarlyDesignPERSValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[0][0];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPERSEffortMultiplier.SelectedIndex == 1) {
-                PERSValue = effortMultipliersValuesTable[0][1];
+                cocomoIIEarlyDesignPERSValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[0][1];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPERSEffortMultiplier.SelectedIndex == 2) {
-                PERSValue = effortMultipliersValuesTable[0][2];
+                cocomoIIEarlyDesignPERSValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[0][2];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPERSEffortMultiplier.SelectedIndex == 3) {
-                PERSValue = effortMultipliersValuesTable[0][3];
+                cocomoIIEarlyDesignPERSValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[0][3];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPERSEffortMultiplier.SelectedIndex == 4) {
-                PERSValue = effortMultipliersValuesTable[0][4];
+                cocomoIIEarlyDesignPERSValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[0][4];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPERSEffortMultiplier.SelectedIndex == 5) {
-                PERSValue = effortMultipliersValuesTable[0][5];
+                cocomoIIEarlyDesignPERSValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[0][5];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPERSEffortMultiplier.SelectedIndex == 6) {
-                PERSValue = effortMultipliersValuesTable[0][6];
+                cocomoIIEarlyDesignPERSValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[0][6];
             } else {
 
             }
@@ -988,19 +1019,19 @@ namespace COCOMO_Калькулятор
         private void CocomoIIEarlyDesign_ComboBox_LevelForPREXEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIEarlyDesign_ComboBox_LevelForPREXEffortMultiplier.SelectedIndex == 0) {
-                PREXValue = effortMultipliersValuesTable[1][0];
+                cocomoIIEarlyDesignPREXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[1][0];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPREXEffortMultiplier.SelectedIndex == 1) {
-                PREXValue = effortMultipliersValuesTable[1][1];
+                cocomoIIEarlyDesignPREXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[1][1];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPREXEffortMultiplier.SelectedIndex == 2) {
-                PREXValue = effortMultipliersValuesTable[1][2];
+                cocomoIIEarlyDesignPREXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[1][2];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPREXEffortMultiplier.SelectedIndex == 3) {
-                PREXValue = effortMultipliersValuesTable[1][3];
+                cocomoIIEarlyDesignPREXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[1][3];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPREXEffortMultiplier.SelectedIndex == 4) {
-                PREXValue = effortMultipliersValuesTable[1][4];
+                cocomoIIEarlyDesignPREXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[1][4];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPREXEffortMultiplier.SelectedIndex == 5) {
-                PREXValue = effortMultipliersValuesTable[1][5];
+                cocomoIIEarlyDesignPREXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[1][5];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPREXEffortMultiplier.SelectedIndex == 6) {
-                PREXValue = effortMultipliersValuesTable[1][6];
+                cocomoIIEarlyDesignPREXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[1][6];
             } else {
 
             }
@@ -1009,19 +1040,19 @@ namespace COCOMO_Калькулятор
         private void CocomoIIEarlyDesign_ComboBox_LevelForRCPXEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIEarlyDesign_ComboBox_LevelForRCPXEffortMultiplier.SelectedIndex == 0) {
-                RCPXValue = effortMultipliersValuesTable[2][0];
+                cocomoIIEarlyDesignRCPXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[2][0];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRCPXEffortMultiplier.SelectedIndex == 1) {
-                RCPXValue = effortMultipliersValuesTable[2][1];
+                cocomoIIEarlyDesignRCPXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[2][1];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRCPXEffortMultiplier.SelectedIndex == 2) {
-                RCPXValue = effortMultipliersValuesTable[2][2];
+                cocomoIIEarlyDesignRCPXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[2][2];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRCPXEffortMultiplier.SelectedIndex == 3) {
-                RCPXValue = effortMultipliersValuesTable[2][3];
+                cocomoIIEarlyDesignRCPXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[2][3];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRCPXEffortMultiplier.SelectedIndex == 4) {
-                RCPXValue = effortMultipliersValuesTable[2][4];
+                cocomoIIEarlyDesignRCPXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[2][4];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRCPXEffortMultiplier.SelectedIndex == 5) {
-                RCPXValue = effortMultipliersValuesTable[2][5];
+                cocomoIIEarlyDesignRCPXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[2][5];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRCPXEffortMultiplier.SelectedIndex == 6) {
-                RCPXValue = effortMultipliersValuesTable[2][6];
+                cocomoIIEarlyDesignRCPXValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[2][6];
             } else {
 
             }
@@ -1030,19 +1061,19 @@ namespace COCOMO_Калькулятор
         private void CocomoIIEarlyDesign_ComboBox_LevelForRUSEEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIEarlyDesign_ComboBox_LevelForRUSEEffortMultiplier.SelectedIndex == 0) {
-                RUSEValue = effortMultipliersValuesTable[3][0];
+                cocomoIIEarlyDesignRUSEValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[3][0];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRUSEEffortMultiplier.SelectedIndex == 1) {
-                RUSEValue = effortMultipliersValuesTable[3][1];
+                cocomoIIEarlyDesignRUSEValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[3][1];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRUSEEffortMultiplier.SelectedIndex == 2) {
-                RUSEValue = effortMultipliersValuesTable[3][2];
+                cocomoIIEarlyDesignRUSEValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[3][2];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRUSEEffortMultiplier.SelectedIndex == 3) {
-                RUSEValue = effortMultipliersValuesTable[3][3];
+                cocomoIIEarlyDesignRUSEValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[3][3];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRUSEEffortMultiplier.SelectedIndex == 4) {
-                RUSEValue = effortMultipliersValuesTable[3][4];
+                cocomoIIEarlyDesignRUSEValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[3][4];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRUSEEffortMultiplier.SelectedIndex == 5) {
-                RUSEValue = effortMultipliersValuesTable[3][5];
+                cocomoIIEarlyDesignRUSEValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[3][5];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForRUSEEffortMultiplier.SelectedIndex == 6) {
-                RUSEValue = effortMultipliersValuesTable[3][6];
+                cocomoIIEarlyDesignRUSEValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[3][6];
             } else {
 
             }
@@ -1051,19 +1082,19 @@ namespace COCOMO_Калькулятор
         private void CocomoIIEarlyDesign_ComboBox_LevelForPDIFEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIEarlyDesign_ComboBox_LevelForPDIFEffortMultiplier.SelectedIndex == 0) {
-                PDIFValue = effortMultipliersValuesTable[4][0];
+                cocomoIIEarlyDesignPDIFValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[4][0];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPDIFEffortMultiplier.SelectedIndex == 1) {
-                PDIFValue = effortMultipliersValuesTable[4][1];
+                cocomoIIEarlyDesignPDIFValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[4][1];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPDIFEffortMultiplier.SelectedIndex == 2) {
-                PDIFValue = effortMultipliersValuesTable[4][2];
+                cocomoIIEarlyDesignPDIFValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[4][2];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPDIFEffortMultiplier.SelectedIndex == 3) {
-                PDIFValue = effortMultipliersValuesTable[4][3];
+                cocomoIIEarlyDesignPDIFValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[4][3];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPDIFEffortMultiplier.SelectedIndex == 4) {
-                PDIFValue = effortMultipliersValuesTable[4][4];
+                cocomoIIEarlyDesignPDIFValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[4][4];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPDIFEffortMultiplier.SelectedIndex == 5) {
-                PDIFValue = effortMultipliersValuesTable[4][5];
+                cocomoIIEarlyDesignPDIFValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[4][5];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForPDIFEffortMultiplier.SelectedIndex == 6) {
-                PDIFValue = effortMultipliersValuesTable[4][6];
+                cocomoIIEarlyDesignPDIFValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[4][6];
             } else {
 
             }
@@ -1072,19 +1103,19 @@ namespace COCOMO_Калькулятор
         private void CocomoIIEarlyDesign_ComboBox_LevelForFCILEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIEarlyDesign_ComboBox_LevelForFCILEffortMultiplier.SelectedIndex == 0) {
-                FCILValue = effortMultipliersValuesTable[5][0];
+                cocomoIIEarlyDesignFCILValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[5][0];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForFCILEffortMultiplier.SelectedIndex == 1) {
-                FCILValue = effortMultipliersValuesTable[5][1];
+                cocomoIIEarlyDesignFCILValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[5][1];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForFCILEffortMultiplier.SelectedIndex == 2) {
-                FCILValue = effortMultipliersValuesTable[5][2];
+                cocomoIIEarlyDesignFCILValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[5][2];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForFCILEffortMultiplier.SelectedIndex == 3) {
-                FCILValue = effortMultipliersValuesTable[5][3];
+                cocomoIIEarlyDesignFCILValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[5][3];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForFCILEffortMultiplier.SelectedIndex == 4) {
-                FCILValue = effortMultipliersValuesTable[5][4];
+                cocomoIIEarlyDesignFCILValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[5][4];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForFCILEffortMultiplier.SelectedIndex == 5) {
-                FCILValue = effortMultipliersValuesTable[5][5];
+                cocomoIIEarlyDesignFCILValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[5][5];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForFCILEffortMultiplier.SelectedIndex == 6) {
-                FCILValue = effortMultipliersValuesTable[5][6];
+                cocomoIIEarlyDesignFCILValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[5][6];
             } else {
 
             }
@@ -1093,19 +1124,19 @@ namespace COCOMO_Калькулятор
         private void CocomoIIEarlyDesign_ComboBox_LevelForSCEDEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CocomoIIEarlyDesign_ComboBox_LevelForSCEDEffortMultiplier.SelectedIndex == 0) {
-                SCEDValue = effortMultipliersValuesTable[6][0];
+                cocomoIIEarlyDesignSCEDValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[6][0];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForSCEDEffortMultiplier.SelectedIndex == 1) {
-                SCEDValue = effortMultipliersValuesTable[6][1];
+                cocomoIIEarlyDesignSCEDValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[6][1];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForSCEDEffortMultiplier.SelectedIndex == 2) {
-                SCEDValue = effortMultipliersValuesTable[6][2];
+                cocomoIIEarlyDesignSCEDValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[6][2];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForSCEDEffortMultiplier.SelectedIndex == 3) {
-                SCEDValue = effortMultipliersValuesTable[6][3];
+                cocomoIIEarlyDesignSCEDValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[6][3];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForSCEDEffortMultiplier.SelectedIndex == 4) {
-                SCEDValue = effortMultipliersValuesTable[6][4];
+                cocomoIIEarlyDesignSCEDValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[6][4];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForSCEDEffortMultiplier.SelectedIndex == 5) {
-                SCEDValue = effortMultipliersValuesTable[6][5];
+                cocomoIIEarlyDesignSCEDValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[6][5];
             } else if (CocomoIIEarlyDesign_ComboBox_LevelForSCEDEffortMultiplier.SelectedIndex == 6) {
-                SCEDValue = effortMultipliersValuesTable[6][6];
+                cocomoIIEarlyDesignSCEDValue = cocomoIIEarlyDesignEffortMultipliersValuesTable[6][6];
             } else {
 
             }
@@ -1136,22 +1167,13 @@ namespace COCOMO_Калькулятор
                 if (CocomoIIEarlyDesign_Button_GetQuote.IsEnabled == true) {
                     CocomoIIEarlyDesign_Button_GetQuote.IsEnabled = false;
                 }
-            } else if (CocomoIntermediate_ComboBox_LevelForRequiredSoftwareReliability.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForApplicationDatabaseSize.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForProductComplexity.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForRunTimePerformanceConstraints.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForMemoryConstraints.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForVolatilityOfTheVirtualMachineEnvironment.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForRequiredTurnaboutTime.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForAnalyticSkills.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForApplicationsExperience.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForSoftwareEngineerCapability.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForVirtualMachineExperience.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForProgrammingLanguageExperience.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForApplicationSoftwareEngineeringMethods.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForUseSoftwareTools.SelectedItem == null ||
-                CocomoIntermediate_ComboBox_LevelForRequiredDevelopmentSchedule.SelectedItem == null)
-            {
+            } else if (CocomoIIEarlyDesign_ComboBox_LevelForPERSEffortMultiplier.SelectedItem == null ||
+                CocomoIIEarlyDesign_ComboBox_LevelForPREXEffortMultiplier.SelectedItem == null ||
+                CocomoIIEarlyDesign_ComboBox_LevelForRCPXEffortMultiplier.SelectedItem == null ||
+                CocomoIIEarlyDesign_ComboBox_LevelForRUSEEffortMultiplier.SelectedItem == null ||
+                CocomoIIEarlyDesign_ComboBox_LevelForPDIFEffortMultiplier.SelectedItem == null ||
+                CocomoIIEarlyDesign_ComboBox_LevelForFCILEffortMultiplier.SelectedItem == null ||
+                CocomoIIEarlyDesign_ComboBox_LevelForSCEDEffortMultiplier.SelectedItem == null) {
                 MessageBox.Show(
                     "Не для всех множителей трудоёмкости\nвыбран рейтинг!",
                     "Ошибка ввода параметров",
@@ -1162,18 +1184,48 @@ namespace COCOMO_Калькулятор
                 if (CocomoIIEarlyDesign_Button_GetQuote.IsEnabled == true) {
                     CocomoIIEarlyDesign_Button_GetQuote.IsEnabled = false;
                 }
-            }
-            else {
+            } else {
                 float amountProgramCode = float.Parse(CocomoIIEarlyDesign_TextBox_AmountProgramCodeValue.Text.Trim());
-                cocomoIIEarlyDesignEAF = PERSValue * PREXValue * RCPXValue * RUSEValue * PDIFValue *
-                    FCILValue * SCEDValue;
-                cocomoIIEarlyDesignEAFWithoutSCED = PERSValue * PREXValue * RCPXValue * RUSEValue *
-                    PDIFValue * FCILValue;
+                cocomoIIEarlyDesignEAFValue = cocomoIIEarlyDesignPERSValue * 
+                    cocomoIIEarlyDesignPREXValue * cocomoIIEarlyDesignRCPXValue * 
+                    cocomoIIEarlyDesignRUSEValue * cocomoIIEarlyDesignPDIFValue *
+                    cocomoIIEarlyDesignFCILValue * cocomoIIEarlyDesignSCEDValue;
 
-                CocomoIIEarlyDesign_TextBox_LaboriousnessValue.Text = CocomoIIEarlyDesignModel.GetEfforts(cocomoIIEarlyDesignEAF, cocomoIIEarlyDesignSumOfScaleFactors, amountProgramCode).ToString("F2");
-                CocomoIIEarlyDesign_TextBox_TimeToDevelopeValue.Text = CocomoIIEarlyDesignModel.GetTimeToDevelop(SCEDValue, cocomoIIEarlyDesignEAFWithoutSCED, amountProgramCode, cocomoIIEarlyDesignSumOfScaleFactors).ToString("F2");
-                CocomoIIEarlyDesign_TextBox_EAFValue.Text = cocomoIIEarlyDesignEAF.ToString("F2");
-                CocomoIIEarlyDesign_TextBox_EAFWithoutSCEDValue.Text = cocomoIIEarlyDesignEAFWithoutSCED.ToString("F2");
+                cocomoIIEarlyDesignEAFWithoutSCEDValue = cocomoIIEarlyDesignPERSValue * 
+                    cocomoIIEarlyDesignPREXValue * cocomoIIEarlyDesignRCPXValue * 
+                    cocomoIIEarlyDesignRUSEValue * cocomoIIEarlyDesignPDIFValue * 
+                    cocomoIIEarlyDesignFCILValue;
+
+                CocomoIIEarlyDesign_TextBox_LaboriousnessValue.Text = CocomoIIEarlyDesignModel.GetEfforts(cocomoIIEarlyDesignEAFValue, cocomoIIEarlyDesignSumOfScaleFactors, amountProgramCode).ToString("F2");
+                CocomoIIEarlyDesign_TextBox_TimeToDevelopeValue.Text = CocomoIIEarlyDesignModel.GetTimeToDevelop(cocomoIIEarlyDesignSCEDValue, cocomoIIEarlyDesignEAFWithoutSCEDValue, amountProgramCode, cocomoIIEarlyDesignSumOfScaleFactors).ToString("F2");
+                CocomoIIEarlyDesign_TextBox_EAFValue.Text = cocomoIIEarlyDesignEAFValue.ToString("F2");
+                CocomoIIEarlyDesign_TextBox_EAFWithoutSCEDValue.Text = cocomoIIEarlyDesignEAFWithoutSCEDValue.ToString("F2");
+            }
+        }
+
+        private void CocomoIIEarlyDesign_Button_ClearValues_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(CocomoIIEarlyDesign_TextBox_LaboriousnessValue.Text) &&
+                string.IsNullOrEmpty(CocomoIIEarlyDesign_TextBox_TimeToDevelopeValue.Text) &&
+                string.IsNullOrEmpty(CocomoIIEarlyDesign_TextBox_EAFValue.Text) &&
+                string.IsNullOrEmpty(CocomoIIEarlyDesign_TextBox_EAFWithoutSCEDValue.Text))
+            {
+                MessageBox.Show
+                    (
+                    "Невозможно очистить пустое поле!",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                    );
+
+                CocomoBasic_Button_ClearValues.IsEnabled = false;
+            }
+            else
+            {
+                CocomoIIEarlyDesign_TextBox_LaboriousnessValue.Clear(); 
+                CocomoIIEarlyDesign_TextBox_TimeToDevelopeValue.Clear();
+                CocomoIIEarlyDesign_TextBox_EAFValue.Clear();
+                CocomoIIEarlyDesign_TextBox_EAFWithoutSCEDValue.Clear();
             }
         }
 
@@ -1320,6 +1372,378 @@ namespace COCOMO_Калькулятор
         {
             CocomoIIPostArchitecture_TabControl.SelectedIndex = 4;
         }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForACAPEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForACAPEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitectureACAPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[0][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForACAPEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitectureACAPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[0][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForACAPEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitectureACAPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[0][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForACAPEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitectureACAPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[0][3];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForACAPEffortMultiplier.SelectedIndex == 4) {
+                cocomoIIPostArchitectureACAPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[0][4];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForAEXPEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForAEXPEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitectureAEXPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[1][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForAEXPEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitectureAEXPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[1][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForAEXPEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitectureAEXPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[1][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForAEXPEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitectureAEXPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[1][3];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForAEXPEffortMultiplier.SelectedIndex == 4) {
+                cocomoIIPostArchitectureAEXPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[1][4];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForPCAPEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForPCAPEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitecturePCAPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[2][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPCAPEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitecturePCAPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[2][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPCAPEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitecturePCAPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[2][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPCAPEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitecturePCAPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[2][3];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPCAPEffortMultiplier.SelectedIndex == 4) {
+                cocomoIIPostArchitecturePCAPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[2][4];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForPCONEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForPCONEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitecturePCONValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[3][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPCONEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitecturePCONValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[3][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPCONEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitecturePCONValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[3][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPCONEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitecturePCONValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[3][3];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPCONEffortMultiplier.SelectedIndex == 4) {
+                cocomoIIPostArchitecturePCONValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[3][4];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForPEXPEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForPEXPEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitecturePEXPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[4][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPEXPEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitecturePEXPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[4][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPEXPEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitecturePEXPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[4][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPEXPEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitecturePEXPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[4][3];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPEXPEffortMultiplier.SelectedIndex == 4) {
+                cocomoIIPostArchitecturePEXPValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[4][4];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForLTEXEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForLTEXEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitectureLTEXValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[5][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForLTEXEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitectureLTEXValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[5][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForLTEXEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitectureLTEXValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[5][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForLTEXEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitectureLTEXValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[5][3];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForLTEXEffortMultiplier.SelectedIndex == 4) {
+                cocomoIIPostArchitectureLTEXValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[5][4];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForRELYEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForRELYEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitectureRELYValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[6][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForRELYEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitectureRELYValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[6][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForRELYEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitectureRELYValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[6][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForRELYEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitectureRELYValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[6][3];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForRELYEffortMultiplier.SelectedIndex == 4) {
+                cocomoIIPostArchitectureRELYValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[6][4];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForDATAEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForDATAEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitectureDATAValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[7][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForDATAEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitectureDATAValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[7][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForDATAEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitectureDATAValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[7][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForDATAEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitectureDATAValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[7][3];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForCPLXEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForCPLXEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitectureCPLXValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[8][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForCPLXEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitectureCPLXValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[8][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForCPLXEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitectureCPLXValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[8][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForCPLXEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitectureCPLXValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[8][3];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForCPLXEffortMultiplier.SelectedIndex == 4) {
+                cocomoIIPostArchitectureCPLXValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[8][4];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForCPLXEffortMultiplier.SelectedIndex == 5) {
+                cocomoIIPostArchitectureCPLXValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[8][5];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForRUSEEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForRUSEEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitectureRUSEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[9][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForRUSEEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitectureRUSEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[9][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForRUSEEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitectureRUSEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[9][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForRUSEEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitectureRUSEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[9][3];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForRUSEEffortMultiplier.SelectedIndex == 4) {
+                cocomoIIPostArchitectureRUSEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[9][4];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForDOCUEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForDOCUEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitectureDOCUValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[10][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForDOCUEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitectureDOCUValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[10][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForDOCUEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitectureDOCUValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[10][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForDOCUEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitectureDOCUValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[10][3];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForDOCUEffortMultiplier.SelectedIndex == 4) {
+                cocomoIIPostArchitectureDOCUValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[10][4];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForTIMEEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForTIMEEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitectureTIMEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[11][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForTIMEEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitectureTIMEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[11][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForTIMEEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitectureTIMEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[11][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForTIMEEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitectureTIMEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[11][3];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForSTOREffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForSTOREffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitectureSTORValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[12][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForSTOREffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitectureSTORValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[12][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForSTOREffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitectureSTORValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[12][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForSTOREffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitectureSTORValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[12][3];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForPVOLEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForPVOLEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitecturePVOLValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[13][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPVOLEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitecturePVOLValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[13][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPVOLEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitecturePVOLValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[13][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForPVOLEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitecturePVOLValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[13][3];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForTOOLEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForTOOLEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitectureTOOLValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[14][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForTOOLEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitectureTOOLValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[14][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForTOOLEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitectureTOOLValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[14][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForTOOLEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitectureTOOLValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[14][3];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForTOOLEffortMultiplier.SelectedIndex == 4) {
+                cocomoIIPostArchitectureTOOLValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[14][4];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForSITEEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForSITEEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitectureSITEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[15][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForSITEEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitectureSITEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[15][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForSITEEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitectureSITEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[15][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForSITEEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitectureSITEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[15][3];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForSITEEffortMultiplier.SelectedIndex == 4) {
+                cocomoIIPostArchitectureSITEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[15][4];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForSITEEffortMultiplier.SelectedIndex == 5) {
+                cocomoIIPostArchitectureSITEValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[15][5];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_ComboBox_LevelForSCEDEffortMultiplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CocomoIIPostArchitecture_ComboBox_LevelForSCEDEffortMultiplier.SelectedIndex == 0) {
+                cocomoIIPostArchitectureSCEDValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[16][0];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForSCEDEffortMultiplier.SelectedIndex == 1) {
+                cocomoIIPostArchitectureSCEDValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[16][1];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForSCEDEffortMultiplier.SelectedIndex == 2) {
+                cocomoIIPostArchitectureSCEDValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[16][2];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForSCEDEffortMultiplier.SelectedIndex == 3) {
+                cocomoIIPostArchitectureSCEDValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[16][3];
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForSCEDEffortMultiplier.SelectedIndex == 4) {
+                cocomoIIPostArchitectureSCEDValue = cocomoIIPostArchitectureEffortMultipliersValuesTable[16][4];
+            } else {
+
+            }
+        }
+
+        private void CocomoIIPostArchitecture_Button_GetQuote_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(CocomoIIPostArchitecture_TextBox_SumOfScaleFactorsValue.Text)) {
+                MessageBox.Show(
+                    "Нет значения для параметра\n\"Сумма факторов масштаба\"!",
+                    "Ошибка ввода параметров",
+                    MessageBoxButton.OKCancel,
+                    MessageBoxImage.Warning
+                    );
+
+                if (CocomoIIPostArchitecture_Button_GetQuote.IsEnabled == true) {
+                    CocomoIIPostArchitecture_Button_GetQuote.IsEnabled = false;
+                }
+            } else if (string.IsNullOrWhiteSpace(CocomoIIPostArchitecture_TextBox_AmountProgramCodeValue.Text) ||
+                string.IsNullOrEmpty(CocomoIIPostArchitecture_TextBox_AmountProgramCodeValue.Text)) {
+                MessageBox.Show(
+                    "Введена пустая строка или пробел!",
+                    "Ошибка ввода параметров",
+                    MessageBoxButton.OKCancel,
+                    MessageBoxImage.Warning
+                    );
+
+                if (CocomoIIPostArchitecture_Button_GetQuote.IsEnabled == true) {
+                    CocomoIIPostArchitecture_Button_GetQuote.IsEnabled = false;
+                }
+            } else if (CocomoIIPostArchitecture_ComboBox_LevelForACAPEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForAEXPEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForPCAPEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForPCONEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForPEXPEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForLTEXEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForRELYEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForDATAEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForCPLXEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForRUSEEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForDOCUEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForTIMEEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForSTOREffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForPVOLEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForTOOLEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForSITEEffortMultiplier.SelectedItem == null ||
+                CocomoIIPostArchitecture_ComboBox_LevelForSCEDEffortMultiplier.SelectedItem == null) {
+                MessageBox.Show(
+                    "Не для всех множителей трудоёмкости\nвыбран рейтинг!",
+                    "Ошибка ввода параметров",
+                    MessageBoxButton.OKCancel,
+                    MessageBoxImage.Warning
+                    );
+
+                if (CocomoIIPostArchitecture_Button_GetQuote.IsEnabled == true) {
+                    CocomoIIPostArchitecture_Button_GetQuote.IsEnabled = false;
+                }
+            } else {
+                float amountProgramCode = float.Parse(CocomoIIPostArchitecture_TextBox_AmountProgramCodeValue.Text.Trim());
+
+                cocomoIIPostArchitectureEAFValue = cocomoIIPostArchitectureACAPValue * 
+                    cocomoIIPostArchitectureAEXPValue * cocomoIIPostArchitecturePCAPValue * 
+                    cocomoIIPostArchitecturePCONValue * cocomoIIPostArchitecturePEXPValue * 
+                    cocomoIIPostArchitectureLTEXValue * cocomoIIPostArchitectureRELYValue * 
+                    cocomoIIPostArchitectureDATAValue * cocomoIIPostArchitectureCPLXValue * 
+                    cocomoIIPostArchitectureRUSEValue * cocomoIIPostArchitectureDOCUValue * 
+                    cocomoIIPostArchitectureTIMEValue * cocomoIIPostArchitectureSTORValue * 
+                    cocomoIIPostArchitecturePVOLValue * cocomoIIPostArchitectureTOOLValue * 
+                    cocomoIIPostArchitectureSITEValue * cocomoIIPostArchitectureSCEDValue;
+
+                cocomoIIPostArchitectureEAFWithoutSCEDValue = cocomoIIPostArchitectureACAPValue *
+                    cocomoIIPostArchitectureAEXPValue * cocomoIIPostArchitecturePCAPValue *
+                    cocomoIIPostArchitecturePCONValue * cocomoIIPostArchitecturePEXPValue *
+                    cocomoIIPostArchitectureLTEXValue * cocomoIIPostArchitectureRELYValue *
+                    cocomoIIPostArchitectureDATAValue * cocomoIIPostArchitectureCPLXValue *
+                    cocomoIIPostArchitectureRUSEValue * cocomoIIPostArchitectureDOCUValue *
+                    cocomoIIPostArchitectureTIMEValue * cocomoIIPostArchitectureSTORValue *
+                    cocomoIIPostArchitecturePVOLValue * cocomoIIPostArchitectureTOOLValue *
+                    cocomoIIPostArchitectureSITEValue;
+
+                CocomoIIPostArchitecture_TextBox_LaboriousnessValue.Text = CocomoIIPostArchitectureModel.GetEfforts(cocomoIIPostArchitectureEAFValue, cocomoIIPostArchitectureSumOfScaleFactors, amountProgramCode).ToString("F2");
+                CocomoIIPostArchitecture_TextBox_TimeToDevelopeValue.Text = CocomoIIPostArchitectureModel.GetTimeToDevelop(cocomoIIPostArchitectureSCEDValue, cocomoIIPostArchitectureEAFWithoutSCEDValue, amountProgramCode, cocomoIIPostArchitectureSumOfScaleFactors).ToString("F2");
+                CocomoIIPostArchitecture_TextBox_EAFValue.Text = cocomoIIPostArchitectureEAFValue.ToString("F2");
+                CocomoIIPostArchitecture_TextBox_EAFWithoutSCEDValue.Text = cocomoIIPostArchitectureEAFWithoutSCEDValue.ToString("F2");
+            }
+        }
         #endregion
+
+        private void CocomoIIPostArchitecture_Button_ClearValues_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
